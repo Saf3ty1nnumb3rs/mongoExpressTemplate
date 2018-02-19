@@ -31,6 +31,22 @@ router.get('/:id', (req, res) => {
 
 })
 
+//CREATE ROUTE----------------------------------------------------------------------
+router.post('/', (req, res) => {
+    res.send(req.body)///for testing purposes
+    //Get info about the new user from the request
+    //req.body will give us info from user
+    const newGenericInfo = req.body
+
+    const generic = new Generic(newGenericInfo)
+    //After user is saved redirect to the :id of new user
+    generic.save().then((savedGeneric) => {
+        res.send(svaedGeneric)
+    }).catch((err) => {
+        res.send(err)
+    })
+})
+
 
 
 
