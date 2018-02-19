@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 //MONGOOSE implementation
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/')
+mongoose.connect('mongodb://localhost/mongoExpressTemplate')//update host folder to reflect your working folder
 
 
 
@@ -20,8 +20,8 @@ mongoose.connect('mongodb://localhost/')
 
 
 //ROUTE CONTROLLER
-const routeController = require('./controllers/routeController.js')
-app.use('/route' , routeController)
+const routeController = require('./controllers/routeController.js')//update variable name and filename to reflect YOUR filename/variable
+app.use('/generics' , routeController)//DO NOT FORGET TO SET THIS TO THE NAME OF YOUR INDEX ie, users, owners, doggies, whatevers!!
 
 
 
