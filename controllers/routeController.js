@@ -47,7 +47,7 @@ router.post('/', (req, res) => {
     })
 })
 
-//USER UPDATE ROUTE------------------------------------------------------------------
+//GENERIC UPDATE ROUTE------------------------------------------------------------------
 router.patch('/:id', (req,res) => {
     //Use data from req.body to update user at req.params.id
     Generic.findByIdAndUpdate(req.params.id,{
@@ -60,6 +60,20 @@ router.patch('/:id', (req,res) => {
         res.send(err)
     })
     })
+ 
+//DESTROY ROUTE-----------------------------------------------------------------------------
+router.delete('/:id', (req,res) => {
+    //Get the users id and trigger a delete
+    Generic.findByIdAndRemove(req.params.id).then(()=> {
+        //once delete is successful send a message
+        res.send('Successfully Deleted')
+    }).catch((err) => {
+        res.send(err)
+    })
+
+})
+
+
 
 
 
