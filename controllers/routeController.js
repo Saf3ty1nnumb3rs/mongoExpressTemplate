@@ -19,7 +19,7 @@ router.get('/', (req, res) =>{
 })
 //SHOW ROUTE------------------------------------------------------------------------
 router.get('/:id', (req, res) => {
-    res.send('Sup')///for testing purposes -remove when seeded
+    //res.send('Sup')///for testing purposes -remove when seeded
     //Find the _id of the user we want to return (in our router params)
     const genericId = req.params.id
     //Use the _id to search for a specific User in our DB
@@ -73,6 +73,37 @@ router.delete('/:id', (req,res) => {
 
 })
 
+
+//ADD OTHER ROUTE----------------------------------------------------------------------------
+router.post('/:genericId/others', (req,res) => {
+    const newOther = new Other({name: req.body.name})
+    //Generic genericId to find a specific generic
+    Generic.findById(req.params.genericId).then((generic) => {
+        //after we find user, push a new item user
+        generic.others.push(newOther)
+
+        //save generic with new other
+        return generic.save()
+    })
+    .then((updatedGeneric) => {
+
+        //return the update
+        res.send(updatedGeneric)
+    } )
+
+})
+//REMOVE AN ITEM-------------------------------------------------------------------------------
+router.delete('/:genericId/others/:id', (req, res) =>{
+    //res.send('howdy yall')
+    //findthe generic by req.params.genericId
+    Generic.findById(req.params.genericId).then((generic) => {
+        //Once we find the generic, find the other matches req.params.id
+        generic.others.id(req.params.id).rermove()
+        return generic.save()
+    }).then((savedGeneric) =>{
+        res.send(savedGeneric)
+    })
+})
 
 
 
