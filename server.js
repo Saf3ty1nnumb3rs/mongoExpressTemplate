@@ -4,6 +4,10 @@ const hbs = require('hbs')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
+//CSS yo!
+app.use(express.static('public'))
+
+
 //BODY PARSER
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))

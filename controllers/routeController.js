@@ -98,7 +98,7 @@ router.delete('/:genericId/others/:id', (req, res) =>{
     //findthe generic by req.params.genericId
     Generic.findById(req.params.genericId).then((generic) => {
         //Once we find the generic, find the other matches req.params.id
-        generic.others.id(req.params.id).rermove()
+        generic.others.id(req.params.id).remove()
         return generic.save()
     }).then((savedGeneric) =>{
         res.send(savedGeneric)
